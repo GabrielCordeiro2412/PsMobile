@@ -8,7 +8,7 @@ export default function Home() {
     const [color, setColor] = useState();
     const [autorizar, setAutorizar] = useState();
     const [mostrar, setMostrar] = useState('none');
-    const [teste, setTeste] = useState('')
+    const [novoAutorizado, setNomeAutorizado] = useState('')
 
     function showAlert(){
         if(nome == null || nome === "" || nome === " "){
@@ -23,7 +23,7 @@ export default function Home() {
         setAutorizacaoSolicit()
         setColor()
         setMostrar('none')
-        setTeste('')
+        setNomeAutorizado('')
     }
 
     function autorizarNome(){
@@ -31,15 +31,15 @@ export default function Home() {
         setColor('green')
         setAutorizacaoSolicit(false)
         setMostrar('flex')
-        setTeste(nome)
+        setNomeAutorizado(nome)
     }
 
     function naoAutorizarNome(){
-        setAutorizar(true)
+        setAutorizar(false)
         setColor('red')
         setAutorizacaoSolicit(false)
         setMostrar('flex')
-        setTeste(nome)
+        setNomeAutorizado(nome)
     }
 
  return (
@@ -66,10 +66,11 @@ export default function Home() {
                     </TouchableOpacity> 
                 </View>
                 {
-                    autorizar ?
-                    <Text style={{color: color, fontSize: 25, display: mostrar, fontWeight: 'bold', marginTop: 15}}>{teste} autorizado!</Text>
-                    :
-                    <Text style={{color: color, fontSize: 25, display: mostrar, fontWeight: 'bold', marginTop: 15}}>{teste} não autorizado!</Text>
+                    autorizar == true ?
+                    <Text style={{color: color, fontSize: 25, display: mostrar, fontWeight: 'bold', marginTop: 15}}>{novoAutorizado} autorizado!</Text>
+                    : autorizar == false ?
+                    <Text style={{color: color, fontSize: 25, display: mostrar, fontWeight: 'bold', marginTop: 15}}>{novoAutorizado} não autorizado!</Text>
+                    : <Text></Text>
                 }
         </View> 
         :
